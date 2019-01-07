@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+    <h1>欢迎你的访问</h1>
+    <h2>我的模板数据</h2>
+{#    我是模板，数据时{{ contex }}#}
+        {% comment %}
+        {% for k,v in dict.items %}
+        <li>{{ forloop.counter }} {{ k|lower}} {{ v }}</li>
+        {% endfor %}
+        <li>{{ dict.items | join:'-'}}</li>
+{#        {{ dict.keys | lower}}#}
+    </u1>
+    <hr>
+    <u1>
+        {% for k,v in dict.items %}
+        <li>{{ k | upper }} {{ v }}</li>
+        {% endfor %}
+    </u1>
+    <hr>
+    <u1>
+        {% for k,v in dict.items %}
+            {{ forloop.first }}
+            {{ forloop.last }}
+        <li>{{ forloop.revcounter }} {{ k }} {{ v }}</li>
+        {% endfor %}
+    </u1>
+    <hr>
+    {% endcomment %}
+    <u1>
+        {% for k,v in dict.items %}
+            {% if forloop.counter0|divisibleby:"2" %}
+            <li style="color: brown">{{ forloop.revcounter0 }} {{ k }} {{ v }}</li>
+            {% else %}
+            <li style="color: cyan">{{ forloop.revcounter0 }} {{ k }} {{ v }}</li>
+            {% endif %}
+        {% endfor %}
+    </u1>
+    <hr>
+    <u1>
+        {% for k,v in dict.items %}
+{#            {% if forloop.counter0|divisibleby:"2" %}#}
+            <li style='color:{{ forloop.revcounter0|divisibleby:"2"|yesno:"red,blue" }}'>
+                {{ forloop.revcounter0 }} {{ k }} {{ v }}
+            </li>
+{#            {% else %}#}
+{#            <li style="color:{}">{{ forloop.revcounter0 }} {{ k }} {{ v }}</li>#}
+{#            {% endif %}#}
+        {% endfor %}
+    </u1>
+    <hr>
+    {% for k,v in dict.items %}
+    <li class="{{ forloop.revcounter0 | divisibleby:"2"|yesno:"odd, even" }}">
+        {{ forloop.revcounter0 }} {{ k }} {{ v }}
+    </li>
+    {% endfor %}
+    <hr>
+</body>
+</html>
+.odd{
+backgroudcolor:red
+}
+.even{
+backgroudcolor:blue
+}
