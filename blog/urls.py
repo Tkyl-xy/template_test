@@ -14,14 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from django.http import HttpResponse, JsonResponse
 from django.template import loader, RequestContext
 
 #模板
 from django.shortcuts import render
-import time
 def index(requests):
     """视图函数：请求进来返回响应"""
     # templ = loader.get_template('index.html')
@@ -30,7 +29,6 @@ def index(requests):
 
     # return render(requests, 'index.html',{'contex' : 'www.baidu.com'})
     d = dict(zip('abcde', range(1,6)))
-    nowtime = time.time()
     return render(requests, 'index.html', {'dict': d})
     # return render(requests, 'index.html', {'contex':'你好', 'p1':'WTF'})  #html str
     # return HttpResponse("hello,world!!")
@@ -39,5 +37,6 @@ def index(requests):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index),
-    path('', index)
+    path('', index),
+    path('user/', include('user.urls'))
 ]
